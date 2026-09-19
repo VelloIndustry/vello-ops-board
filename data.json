@@ -20,6 +20,10 @@
     {
       "id": "backlog",
       "label": "Backlog"
+    },
+    {
+      "id": "done",
+      "label": "Done"
     }
   ],
   "cards": [
@@ -27,7 +31,7 @@
       "id": "allocent-li-ppc",
       "book": "Allocent",
       "title": "LinkedIn PPC week-1 (junior IR)",
-      "detail": "$25/day × 7d, visits→allocent.ai, Company Page + Rafa. Pack ready: 361 co list, 3 creatives, Rafa setup.",
+      "detail": "$25/day \u00d7 7d, visits\u2192allocent.ai, Company Page + Rafa. Pack ready: 361 co list, 3 creatives, Rafa setup.",
       "status": "waiting_ryan",
       "date": "ASAP",
       "owner": "CoS + Rafa"
@@ -74,7 +78,7 @@
       "title": "Duplicate-email apology (5 Fri prospects)",
       "detail": "Decide one-line apology yes/no.",
       "status": "waiting_ryan",
-      "date": "—",
+      "date": "\u2014",
       "owner": "Ryan"
     },
     {
@@ -83,22 +87,22 @@
       "title": "Keyur / Roivant thread",
       "detail": "Mock + reply path earlier; keep warm only if Ryan asks.",
       "status": "backlog",
-      "date": "—",
+      "date": "\u2014",
       "owner": "AE"
     },
     {
       "id": "typesafe-outreach",
       "book": "Allocent",
       "title": "Get in touch with TypeSafe team",
-      "detail": "Reach out to TypeSafe AI (typesafe.ai). Contact: Dae Kim — dae@typesafe.ai (found via Treg / TryKitt, paid). LinkedIn: linkedin.com/in/kimdae/",
+      "detail": "Reach out to TypeSafe AI (typesafe.ai). Contact: Dae Kim \u2014 dae@typesafe.ai (found via Treg / TryKitt, paid). LinkedIn: linkedin.com/in/kimdae/",
       "status": "backlog",
-      "date": "—",
+      "date": "\u2014",
       "owner": "Ryan + CoS"
     },
     {
       "id": "chamba-jetski-meta",
       "book": "Chamba",
-      "title": "Jetski IG→Spotify Meta Traffic",
+      "title": "Jetski IG\u2192Spotify Meta Traffic",
       "detail": "~$10/day CO, 50/50 warm/lookalike. Blocked on Javier Advertise on Page with @faker.flp.",
       "status": "blocked",
       "date": "When Javier grants",
@@ -107,7 +111,7 @@
     {
       "id": "chamba-spotify",
       "book": "Chamba",
-      "title": "Spotify Marquee/Showcase (Jetski + Félix)",
+      "title": "Spotify Marquee/Showcase (Jetski + F\u00e9lix)",
       "detail": "Booked CA$140 each CO; check delivery.",
       "status": "doing",
       "date": "Monitor",
@@ -117,9 +121,9 @@
       "id": "chamba-caracas",
       "book": "Chamba",
       "title": "Caracas / Maketicket IG boost",
-      "detail": "Was live; keep monitoring vs Jetski.",
-      "status": "doing",
-      "date": "Ongoing",
+      "detail": "Meta IG ticket boost finished. Spent ~$32 lifetime (stop Sep 11). ~27.7k impr / ~22k reach / ~1.6k clicks / ~1.1k LP views. 8 Maketicket sales total as of Sep 19 \u2014 attribution to ad vs organic unknown (no purchase pixel).",
+      "status": "done",
+      "date": "Ended 2026-09-11",
       "owner": "Chamba Ads"
     },
     {
@@ -164,14 +168,14 @@
       "title": "1inch API key for EVM portfolio",
       "detail": "Waiting on Ryan paste; Crypto PM book.",
       "status": "waiting_ryan",
-      "date": "—",
+      "date": "\u2014",
       "owner": "Ryan"
     },
     {
       "id": "ops-board",
       "book": "Ops",
       "title": "Interactive Ops board (CoS-owned)",
-      "detail": "Public Vello Industry umbrella board replacing Ship Tracker. Drag, edit, add, export/import. CoS-owned — not Allocent product.",
+      "detail": "Public Vello Industry umbrella board replacing Ship Tracker. Drag, edit, add, export/import. CoS-owned \u2014 not Allocent product.",
       "status": "doing",
       "date": "2026-09-19",
       "owner": "CoS"
