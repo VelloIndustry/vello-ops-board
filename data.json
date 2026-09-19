@@ -1,0 +1,180 @@
+{
+  "updated": "2026-09-19",
+  "columns": [
+    {
+      "id": "blocked",
+      "label": "Blocked"
+    },
+    {
+      "id": "waiting_ryan",
+      "label": "Waiting on Ryan"
+    },
+    {
+      "id": "doing",
+      "label": "Doing"
+    },
+    {
+      "id": "scheduled",
+      "label": "Scheduled"
+    },
+    {
+      "id": "backlog",
+      "label": "Backlog"
+    }
+  ],
+  "cards": [
+    {
+      "id": "allocent-li-ppc",
+      "book": "Allocent",
+      "title": "LinkedIn PPC week-1 (junior IR)",
+      "detail": "$25/day × 7d, visits→allocent.ai, Company Page + Rafa. Pack ready: 361 co list, 3 creatives, Rafa setup.",
+      "status": "waiting_ryan",
+      "date": "ASAP",
+      "owner": "CoS + Rafa"
+    },
+    {
+      "id": "allocent-plg",
+      "book": "Allocent",
+      "title": "Free PLG CRM packaging",
+      "detail": "Free: demand board + prioritize, NO site de-anon. Paid: activation (email agents + edu ads). Track de-anon called out separately. Integrations split TBD.",
+      "status": "backlog",
+      "date": "Think Sat 9/19",
+      "owner": "Ryan + CoS"
+    },
+    {
+      "id": "allocent-mike",
+      "book": "Allocent",
+      "title": "Docebo / Mike McCarthy",
+      "detail": "Call done; soft no; end-Nov reconnect. Post-call email sent. Oct 2 value email = activation automation (easier not more work).",
+      "status": "scheduled",
+      "date": "Value email Oct 2; meet end Nov",
+      "owner": "AE + CoS"
+    },
+    {
+      "id": "allocent-outbound",
+      "book": "Allocent",
+      "title": "Outbound new-outreach window",
+      "detail": "Closed after Tue Sep 15. Quiet crons. Decide whether to extend.",
+      "status": "waiting_ryan",
+      "date": "When ready",
+      "owner": "Ryan"
+    },
+    {
+      "id": "allocent-week-b",
+      "book": "Allocent",
+      "title": "LI content Week B drafts",
+      "detail": "Draft after this week ships.",
+      "status": "backlog",
+      "date": "After week A",
+      "owner": "Marketing"
+    },
+    {
+      "id": "allocent-dup-email",
+      "book": "Allocent",
+      "title": "Duplicate-email apology (5 Fri prospects)",
+      "detail": "Decide one-line apology yes/no.",
+      "status": "waiting_ryan",
+      "date": "—",
+      "owner": "Ryan"
+    },
+    {
+      "id": "allocent-roiv",
+      "book": "Allocent",
+      "title": "Keyur / Roivant thread",
+      "detail": "Mock + reply path earlier; keep warm only if Ryan asks.",
+      "status": "backlog",
+      "date": "—",
+      "owner": "AE"
+    },
+    {
+      "id": "typesafe-outreach",
+      "book": "Allocent",
+      "title": "Get in touch with TypeSafe team",
+      "detail": "Reach out to TypeSafe AI (typesafe.ai). Contact: Dae Kim — dae@typesafe.ai (found via Treg / TryKitt, paid). LinkedIn: linkedin.com/in/kimdae/",
+      "status": "backlog",
+      "date": "—",
+      "owner": "Ryan + CoS"
+    },
+    {
+      "id": "chamba-jetski-meta",
+      "book": "Chamba",
+      "title": "Jetski IG→Spotify Meta Traffic",
+      "detail": "~$10/day CO, 50/50 warm/lookalike. Blocked on Javier Advertise on Page with @faker.flp.",
+      "status": "blocked",
+      "date": "When Javier grants",
+      "owner": "Chamba Ads + Javier"
+    },
+    {
+      "id": "chamba-spotify",
+      "book": "Chamba",
+      "title": "Spotify Marquee/Showcase (Jetski + Félix)",
+      "detail": "Booked CA$140 each CO; check delivery.",
+      "status": "doing",
+      "date": "Monitor",
+      "owner": "Chamba Ads"
+    },
+    {
+      "id": "chamba-caracas",
+      "book": "Chamba",
+      "title": "Caracas / Maketicket IG boost",
+      "detail": "Was live; keep monitoring vs Jetski.",
+      "status": "doing",
+      "date": "Ongoing",
+      "owner": "Chamba Ads"
+    },
+    {
+      "id": "lockdown",
+      "book": "Personal",
+      "title": "Lockdown account walkthrough",
+      "detail": "New Lockdown agent live; Bitwarden Free path; discovery ~40 accounts.",
+      "status": "doing",
+      "date": "Ongoing",
+      "owner": "Lockdown"
+    },
+    {
+      "id": "agent-zero",
+      "book": "Personal",
+      "title": "Agent Zero reputation scrub",
+      "detail": "Isolated book; CoS stays out unless asked.",
+      "status": "doing",
+      "date": "Ongoing",
+      "owner": "Agent Zero"
+    },
+    {
+      "id": "growthx-start",
+      "book": "GrowthX",
+      "title": "GrowthX start",
+      "detail": "Starts Sep 28. Sell GrowthOS; keep Allocent book separate.",
+      "status": "scheduled",
+      "date": "2026-09-28",
+      "owner": "Ryan"
+    },
+    {
+      "id": "growthx-outbound",
+      "book": "GrowthX",
+      "title": "GrowthX outbound mapping",
+      "detail": "Parked / low priority until start; AEO list in Drive.",
+      "status": "backlog",
+      "date": "Post Sep 28",
+      "owner": "GrowthX Outbound"
+    },
+    {
+      "id": "crypto-1inch",
+      "book": "Crypto",
+      "title": "1inch API key for EVM portfolio",
+      "detail": "Waiting on Ryan paste; Crypto PM book.",
+      "status": "waiting_ryan",
+      "date": "—",
+      "owner": "Ryan"
+    },
+    {
+      "id": "ops-board",
+      "book": "Ops",
+      "title": "Interactive Ops board (CoS-owned)",
+      "detail": "Public Vello Industry umbrella board replacing Ship Tracker. Drag, edit, add, export/import. CoS-owned — not Allocent product.",
+      "status": "doing",
+      "date": "2026-09-19",
+      "owner": "CoS"
+    }
+  ]
+}
