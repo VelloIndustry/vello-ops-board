@@ -87,6 +87,15 @@
       "owner": "AE"
     },
     {
+      "id": "typesafe-outreach",
+      "book": "Allocent",
+      "title": "Get in touch with TypeSafe team",
+      "detail": "Reach out to TypeSafe AI (typesafe.ai). Contact: Dae Kim — dae@typesafe.ai (found via Treg / TryKitt, paid). LinkedIn: linkedin.com/in/kimdae/",
+      "status": "backlog",
+      "date": "—",
+      "owner": "Ryan + CoS"
+    },
+    {
       "id": "chamba-jetski-meta",
       "book": "Chamba",
       "title": "Jetski IG→Spotify Meta Traffic",

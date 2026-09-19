@@ -14,7 +14,7 @@ This repo is configured to publish there. GitHub Pages is not enabled yet (needs
 - Click a card to edit (book, title, detail, date, owner, column) or delete
 - Add card from the header or from any column
 - Export JSON / Import JSON in the header
-- Seeded from [`data.json`](data.json) (16 cards) on first load in a browser
+- Seeded from [`data.json`](data.json) (17 cards) on first load in a browser
 
 ## Persistence
 
