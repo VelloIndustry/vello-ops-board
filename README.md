@@ -13,6 +13,7 @@ This repo is configured to publish there. GitHub Pages is not enabled yet (needs
 - Drag-and-drop between columns and reorder within a column (mouse and touch)
 - Click a card to edit (book, title, detail, date, owner, column) or delete
 - Add card from the header or from any column
+- Filter by project/book in the header: **All** (default) · Allocent · Chamba · Personal · GrowthX · Crypto · Ops. Hides cards visually only; column counts follow the filter. A fresh visit always lands on **All** (the filter is not saved in `localStorage`). While a specific book is selected, new cards default to that book.
 - Export JSON / Import JSON in the header
 - Seeded from [`data.json`](data.json) (17 cards) on first load in a browser
 
