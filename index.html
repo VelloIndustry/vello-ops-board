@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#0f1115" />
+<meta name="robots" content="noindex" />
+<meta name="description" content="Vello Industry umbrella ops kanban for Allocent, Chamba, GrowthX, Personal, Crypto, and Ops." />
+<title>Vello ops board</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23161a22'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-family='system-ui' font-size='16' font-weight='700' fill='%236ea8fe'%3EV%3C/text%3E%3C/svg%3E" />
+<style>
+  :root {
+    --bg: #0f1115;
+    --bg2: #161a22;
+    --bg3: #1c2230;
+    --border: #2a3344;
+    --text: #e8ecf4;
+    --muted: #8b95a8;
+    --accent: #6ea8fe;
+    --danger: #f07178;
+    --ok: #7fd99a;
+    --warn: #e6c07b;
+    --shadow: 0 8px 24px rgba(0,0,0,.35);
+    --radius: 10px;
+    --font: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --header-h: 72px;
+  }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; margin: 0; }
+  body {
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--text);
+    display: flex;
+    flex-direction: column;
+    min-height: 100dvh;
+  }
+  header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    padding: 12px 18px;
+    padding-left: max(18px, env(safe-area-inset-left));
+    padding-right: max(18px, env(safe-area-inset-right));
+    border-bottom: 1px solid var(--border);
+    background: var(--bg2);
+    position: sticky;
+    top: 0;
+    z-index: 20;
+  }
+  .brand {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+  }
+  header h1 {
+    font-size: 1.15rem;
+    font-weight: 650;
+    margin: 0;
+    letter-spacing: .2px;
+  }
+  .meta { color: var(--muted); font-size: .82rem; }
+  .spacer { flex: 1; }
+  .actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .btn {
+    appearance: none;
+    border: 1px solid var(--border);
+    background: var(--bg3);
+    color: var(--text);
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: .85rem;
+    cursor: pointer;
+    transition: background .15s, border-color .15s;
+    min-height: 36px;
+  }
+  .btn:hover { background: #243049; border-color: #3a4860; }
+  .btn.primary { background: #2a4a7a; border-color: #3d6aad; }
+  .btn.primary:hover { background: #355a90; }
+  .btn.danger { background: #4a2228; border-color: #7a3a42; color: #ffb4b8; }
+  .btn.ghost { background: transparent; }
+  .toast {
+    font-size: .8rem;
+    padding: 5px 10px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: var(--bg3);
+    color: var(--muted);
+    min-width: 72px;
+    text-align: center;
+    white-space: nowrap;
+  }
+  .toast.ok { color: var(--ok); border-color: #2f5a3d; }
+  .toast.saving { color: var(--warn); border-color: #5a4a28; }
+  .toast.offline { color: var(--danger); border-color: #5a2a30; }
+
+  .board-wrap {
+    flex: 1;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 16px;
+    padding-bottom: max(16px, env(safe-area-inset-bottom));
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x proximity;
+  }
+  .board {
+    display: flex;
+    gap: 12px;
+    min-height: calc(100dvh - 110px);
+    width: max-content;
+    min-width: 100%;
+  }
+  .col {
+    width: 280px;
+    flex: 0 0 280px;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    display: flex;
+    flex-direction: column;
+    max-height: calc(100dvh - 118px);
+    scroll-snap-align: start;
+  }
+  .col-head {
+    padding: 12px 12px 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .col-head h2 {
+    margin: 0;
+    font-size: .92rem;
+    font-weight: 600;
+    flex: 1;
+  }
+  .count {
+    font-size: .75rem;
+    color: var(--muted);
+    background: var(--bg3);
+    border-radius: 999px;
+    padding: 2px 8px;
+  }
+  .col-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-height: 80px;
+  }
+  .col-body.drag-over {
+    outline: 2px dashed var(--accent);
+    outline-offset: -4px;
+    background: #182030;
+  }
+  .col-foot {
+    padding: 8px 10px 10px;
+    border-top: 1px solid var(--border);
+  }
+  .col-foot .btn { width: 100%; min-height: 40px; }
+
+  .card {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    padding: 10px 11px;
+    cursor: grab;
+    box-shadow: 0 1px 0 rgba(255,255,255,.03);
+    transition: border-color .15s, transform .1s;
+    user-select: none;
+    -webkit-user-drag: none;
+    touch-action: manipulation;
+  }
+  .card:hover { border-color: #3d4d66; }
+  .card:active { cursor: grabbing; }
+  .card.dragging { opacity: .35; }
+  .card.drop-before { box-shadow: inset 0 2px 0 0 var(--accent); }
+  .card.drop-after { box-shadow: inset 0 -2px 0 0 var(--accent); }
+  .card.ghost {
+    position: fixed;
+    z-index: 40;
+    pointer-events: none;
+    opacity: .92;
+    box-shadow: var(--shadow);
+    transform: rotate(2deg) scale(1.02);
+    margin: 0;
+  }
+  .badge {
+    display: inline-block;
+    font-size: .68rem;
+    font-weight: 650;
+    letter-spacing: .3px;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 6px;
+    margin-bottom: 6px;
+  }
+  .book-Allocent { background: #2a3f6a; color: #a8c4ff; }
+  .book-Chamba { background: #3a2a5a; color: #d0b8ff; }
+  .book-Personal { background: #2a4a3a; color: #a8e0c0; }
+  .book-GrowthX { background: #4a3a20; color: #f0d090; }
+  .book-Crypto { background: #3a3a20; color: #e0e090; }
+  .book-Ops { background: #3a3030; color: #e0b0b0; }
+  .card-title {
+    font-size: .9rem;
+    font-weight: 600;
+    line-height: 1.3;
+    margin: 0 0 4px;
+  }
+  .card-detail {
+    font-size: .78rem;
+    color: var(--muted);
+    line-height: 1.35;
+    margin: 0 0 8px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .card-meta {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    font-size: .72rem;
+    color: #9aa6ba;
+  }
+  .card-meta .owner { font-weight: 500; color: #b8c2d4; }
+
+  .overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.55);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
+    padding: 16px;
+    padding-bottom: max(16px, env(safe-area-inset-bottom));
+  }
+  .overlay.open { display: flex; }
+  .modal {
+    width: min(480px, 100%);
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    max-height: 90dvh;
+    overflow-y: auto;
+  }
+  .modal header {
+    position: static;
+    border: none;
+    padding: 14px 16px 0;
+    background: transparent;
+  }
+  .modal h3 { margin: 0; font-size: 1rem; }
+  .modal .body { padding: 12px 16px 16px; display: grid; gap: 10px; }
+  label {
+    display: grid;
+    gap: 4px;
+    font-size: .78rem;
+    color: var(--muted);
+  }
+  input, select, textarea {
+    width: 100%;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--text);
+    border-radius: 8px;
+    padding: 8px 10px;
+    font: inherit;
+    font-size: 1rem;
+  }
+  textarea { min-height: 90px; resize: vertical; }
+  input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+  .modal-actions {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    margin-top: 4px;
+  }
+  .modal-actions .spacer { flex: 1; }
+  #importFile { display: none; }
+
+  @media (max-width: 700px) {
+    header { padding: 10px 12px; gap: 8px; }
+    header h1 { font-size: 1.05rem; }
+    .col { width: min(280px, 85vw); flex-basis: min(280px, 85vw); }
+    .btn { min-height: 40px; }
+    .toast { width: 100%; }
+    .actions { width: 100%; }
+    .actions .btn { flex: 1 1 auto; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">
+    <h1>Vello ops board</h1>
+    <span class="meta">Vello Industry umbrella · Allocent · Chamba · GrowthX · Personal · Crypto · Ops</span>
+    <span class="meta" id="lastUpdated">—</span>
+  </div>
+  <span class="toast" id="statusToast">Ready</span>
+  <div class="spacer"></div>
+  <div class="actions">
+    <button class="btn primary" id="btnAddGlobal" type="button">+ Add card</button>
+    <button class="btn" id="btnExport" type="button">Export JSON</button>
+    <button class="btn" id="btnImport" type="button">Import JSON</button>
+  </div>
+  <input type="file" id="importFile" accept="application/json,.json" />
+</header>
+
+<div class="board-wrap" id="boardWrap">
+  <div class="board" id="board"></div>
+</div>
+
+<div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal">
+    <header>
+      <h3 id="modalTitle">Edit card</h3>
+    </header>
+    <div class="body">
+      <label>Book
+        <select id="fBook">
+          <option>Allocent</option>
+          <option>Chamba</option>
+          <option>Personal</option>
+          <option>GrowthX</option>
+          <option>Crypto</option>
+          <option>Ops</option>
+        </select>
+      </label>
+      <label>Title
+        <input id="fTitle" type="text" maxlength="200" />
+      </label>
+      <label>Detail
+        <textarea id="fDetail" maxlength="2000"></textarea>
+      </label>
+      <label>Date
+        <input id="fDate" type="text" maxlength="80" />
+      </label>
+      <label>Owner
+        <input id="fOwner" type="text" maxlength="120" />
+      </label>
+      <label>Column
+        <select id="fStatus"></select>
+      </label>
+      <div class="modal-actions">
+        <button class="btn danger" id="btnDelete" type="button">Delete</button>
+        <div class="spacer"></div>
+        <button class="btn ghost" id="btnCancel" type="button">Cancel</button>
+        <button class="btn primary" id="btnSave" type="button">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+{
+  "name": "vello-ops-board",
+  "private": true,
+  "description": "Vello Industry umbrella ops kanban (Allocent, Chamba, GrowthX, Personal, Crypto, Ops).",
+  "scripts": {
+    "start": "python3 -m http.server 8765"
+  }
+}
