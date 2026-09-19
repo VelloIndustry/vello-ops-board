@@ -2,9 +2,9 @@
 
 Public interactive kanban for Ryan Iacoviello’s cross-book work under **Vello Industry** (Allocent, Chamba, GrowthX, Personal, Crypto, Ops). This is the umbrella ops board — not an Allocent product surface. Ship Tracker is retired; this app replaces it.
 
-**Live URL:** [https://velloindustry.github.io/vello-ops-board/](https://velloindustry.github.io/vello-ops-board/)
+**Live URL (after one-time Pages enable + merge to `main`):** [https://velloindustry.github.io/vello-ops-board/](https://velloindustry.github.io/vello-ops-board/)
 
-If that GitHub Pages URL is not live yet, use the one-time steps below. After Vercel is linked, the Vercel URL is preferred (shared persistence is available there).
+This repo is configured to publish there. GitHub Pages is not enabled yet (needs a repo admin once). Until then, merge this app and follow **Deploy** below. After Vercel is linked, the Vercel URL is preferred because shared persistence (KV) is available there.
 
 ## What it does
 
