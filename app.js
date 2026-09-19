@@ -7,7 +7,8 @@
     { id: "waiting_ryan", label: "Waiting on Ryan" },
     { id: "doing", label: "Doing" },
     { id: "scheduled", label: "Scheduled" },
-    { id: "backlog", label: "Backlog" }
+    { id: "backlog", label: "Backlog" },
+    { id: "done", label: "Done" }
   ];
   const BOOKS = ["Allocent", "Chamba", "Personal", "GrowthX", "Crypto", "Ops"];
 
@@ -132,7 +133,11 @@
   function applyData(data) {
     state = {
       updated: data.updated || "",
-      columns: data.columns && data.columns.length ? data.columns : DEFAULT_COLUMNS.slice(),
+      columns: (() => {
+        const cols = data.columns && data.columns.length ? data.columns.slice() : DEFAULT_COLUMNS.slice();
+        if (!cols.some((c) => c.id === "done")) cols.push({ id: "done", label: "Done" });
+        return cols;
+      })(),
       cards: Array.isArray(data.cards) ? data.cards : []
     };
     $("lastUpdated").textContent = state.updated ? ("Updated " + state.updated) : "—";
