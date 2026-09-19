@@ -13,6 +13,7 @@
 
   let state = { updated: "", columns: DEFAULT_COLUMNS.slice(), cards: [] };
   let persistMode = "local"; // shared | local
+  let sharedWrite = true;
   let saveTimer = null;
   let editingId = null;
   let dragCardId = null;
@@ -57,13 +58,19 @@
       cards: state.cards
     };
     persistLocal();
+    if (!sharedWrite) {
+      persistMode = "local";
+      setToast("ok", "This browser");
+      return;
+    }
     try {
       const res = await fetch(API, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)
       });
-      if (res.status === 501) {
+      if (res.status === 501 || res.status === 404 || res.status === 405) {
+        sharedWrite = false;
         persistMode = "local";
         setToast("ok", "This browser");
         return;
