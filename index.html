@@ -69,6 +69,52 @@
     gap: 8px;
     flex-wrap: wrap;
   }
+  .book-filter {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex: 1 1 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 2px 0;
+    scrollbar-width: thin;
+  }
+  .filter-chip {
+    appearance: none;
+    border: 1px solid var(--border);
+    background: var(--bg3);
+    color: var(--muted);
+    border-radius: 999px;
+    padding: 6px 12px;
+    font-size: .8rem;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    min-height: 32px;
+    flex: 0 0 auto;
+    transition: background .15s, border-color .15s, color .15s;
+  }
+  .filter-chip:hover {
+    background: #243049;
+    border-color: #3a4860;
+    color: var(--text);
+  }
+  .filter-chip:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+  .filter-chip[aria-checked="true"] {
+    background: #2a4a7a;
+    border-color: #6ea8fe;
+    color: var(--text);
+    box-shadow: inset 0 0 0 1px rgba(110, 168, 254, .35);
+  }
+  .filter-chip[data-book="Allocent"][aria-checked="true"] { background: #2a3f6a; border-color: #a8c4ff; color: #a8c4ff; }
+  .filter-chip[data-book="Chamba"][aria-checked="true"] { background: #3a2a5a; border-color: #d0b8ff; color: #d0b8ff; }
+  .filter-chip[data-book="Personal"][aria-checked="true"] { background: #2a4a3a; border-color: #a8e0c0; color: #a8e0c0; }
+  .filter-chip[data-book="GrowthX"][aria-checked="true"] { background: #4a3a20; border-color: #f0d090; color: #f0d090; }
+  .filter-chip[data-book="Crypto"][aria-checked="true"] { background: #3a3a20; border-color: #e0e090; color: #e0e090; }
+  .filter-chip[data-book="Ops"][aria-checked="true"] { background: #3a3030; border-color: #e0b0b0; color: #e0b0b0; }
   .btn {
     appearance: none;
     border: 1px solid var(--border);
@@ -110,10 +156,12 @@
     -webkit-overflow-scrolling: touch;
     scroll-snap-type: x proximity;
   }
+  .board-wrap { min-height: 0; }
   .board {
     display: flex;
     gap: 12px;
-    min-height: calc(100dvh - 110px);
+    min-height: 100%;
+    height: 100%;
     width: max-content;
     min-width: 100%;
   }
@@ -125,7 +173,7 @@
     border-radius: var(--radius);
     display: flex;
     flex-direction: column;
-    max-height: calc(100dvh - 118px);
+    max-height: 100%;
     scroll-snap-align: start;
   }
   .col-head {
@@ -302,6 +350,8 @@
     .btn { min-height: 40px; }
     .actions { width: 100%; }
     .actions .btn { flex: 1 1 auto; }
+    .book-filter { flex-wrap: nowrap; }
+    .filter-chip { min-height: 36px; }
   }
 </style>
 </head>
@@ -320,6 +370,7 @@
     <button class="btn" id="btnImport" type="button">Import JSON</button>
   </div>
   <input type="file" id="importFile" accept="application/json,.json" />
+  <div class="book-filter" id="bookFilter" role="radiogroup" aria-label="Filter by project"></div>
 </header>
 
 <div class="board-wrap" id="boardWrap">

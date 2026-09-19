@@ -20,6 +20,7 @@
   let dropTarget = null;
   let ghostEl = null;
   let dragging = false;
+  let bookFilter = "All";
 
   const $ = (id) => document.getElementById(id);
   const boardEl = $("board");
@@ -142,7 +143,57 @@
     return state.cards.filter((c) => c.status === status);
   }
 
+  function cardVisible(card) {
+    return bookFilter === "All" || card.book === bookFilter;
+  }
+
+  function visibleCardsIn(status) {
+    return cardsIn(status).filter(cardVisible);
+  }
+
+  function bookOptions() {
+    const present = [];
+    const seen = new Set();
+    state.cards.forEach((c) => {
+      const book = c.book;
+      if (!book || seen.has(book) || BOOKS.includes(book)) return;
+      seen.add(book);
+      present.push(book);
+    });
+    present.sort();
+    return ["All"].concat(BOOKS, present);
+  }
+
+  function setBookFilter(book, opts) {
+    const next = book || "All";
+    bookFilter = next;
+    render();
+    if (opts && opts.focus) {
+      const selected = document.querySelector('.filter-chip[aria-checked="true"]');
+      if (selected) selected.focus();
+    }
+  }
+
+  function renderFilter() {
+    const wrap = $("bookFilter");
+    wrap.innerHTML = "";
+    bookOptions().forEach((book) => {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "filter-chip";
+      btn.dataset.book = book;
+      btn.setAttribute("role", "radio");
+      const selected = bookFilter === book;
+      btn.setAttribute("aria-checked", selected ? "true" : "false");
+      btn.tabIndex = selected ? 0 : -1;
+      btn.textContent = book;
+      btn.addEventListener("click", () => setBookFilter(book, { focus: true }));
+      wrap.appendChild(btn);
+    });
+  }
+
   function render() {
+    renderFilter();
     boardEl.innerHTML = "";
     const statusSelect = $("fStatus");
     statusSelect.innerHTML = "";
@@ -162,7 +213,7 @@
       h2.textContent = col.label;
       const count = document.createElement("span");
       count.className = "count";
-      const list = cardsIn(col.id);
+      const list = visibleCardsIn(col.id);
       count.textContent = String(list.length);
       head.appendChild(h2);
       head.appendChild(count);
@@ -336,7 +387,7 @@
   function nextSiblingId(id) {
     const card = state.cards.find((c) => c.id === id);
     if (!card) return null;
-    const siblings = cardsIn(card.status);
+    const siblings = visibleCardsIn(card.status);
     const idx = siblings.findIndex((c) => c.id === id);
     if (idx < 0 || idx >= siblings.length - 1) return null;
     return siblings[idx + 1].id;
@@ -433,7 +484,18 @@
   function openNew(status) {
     editingId = null;
     $("modalTitle").textContent = "New card";
-    $("fBook").value = "Ops";
+    if (bookFilter !== "All") {
+      const select = $("fBook");
+      if (![...select.options].some((o) => o.value === bookFilter)) {
+        const opt = document.createElement("option");
+        opt.value = bookFilter;
+        opt.textContent = bookFilter;
+        select.appendChild(opt);
+      }
+      select.value = bookFilter;
+    } else {
+      $("fBook").value = "Ops";
+    }
     $("fTitle").value = "";
     $("fDetail").value = "";
     $("fDate").value = "";
@@ -484,6 +546,19 @@
     scheduleSave();
   }
 
+  $("bookFilter").addEventListener("keydown", (e) => {
+    const chips = [...$("bookFilter").querySelectorAll(".filter-chip")];
+    if (!chips.length) return;
+    const i = Math.max(0, chips.findIndex((c) => c.getAttribute("aria-checked") === "true"));
+    let next = i;
+    if (e.key === "ArrowRight" || e.key === "ArrowDown") next = (i + 1) % chips.length;
+    else if (e.key === "ArrowLeft" || e.key === "ArrowUp") next = (i - 1 + chips.length) % chips.length;
+    else if (e.key === "Home") next = 0;
+    else if (e.key === "End") next = chips.length - 1;
+    else return;
+    e.preventDefault();
+    setBookFilter(chips[next].dataset.book, { focus: true });
+  });
   $("btnCancel").addEventListener("click", closeModal);
   $("btnSave").addEventListener("click", saveModal);
   $("btnDelete").addEventListener("click", deleteCard);
