@@ -31,10 +31,10 @@
       "id": "allocent-li-ppc",
       "book": "Allocent",
       "title": "LinkedIn PPC week-1 (junior IR)",
-      "detail": "$25/day \u00d7 7d, visits\u2192allocent.ai. Identity LOCKED: Ryan Ianni personal (not Company Page / Rafa). Pack ready: 361 co list, 3 creatives, IANNI_LI_ADS_SETUP.md. Next: approve creative + launch in Campaign Manager.",
-      "status": "waiting_ryan",
-      "date": "ASAP",
-      "owner": "CoS + Ryan Ianni"
+      "detail": "BLOCKED. Ianni personal advertiser fails LI identity verify (second account). Company Page path stuck: Rafa cannot successfully add Ryan as Page admin. Do not use day-job LinkedIn. Park until Page access or Rafa can launch solo with Ryan billing.",
+      "status": "blocked",
+      "date": "Parked",
+      "owner": "Ryan + Rafa"
     },
     {
       "id": "allocent-plg",
