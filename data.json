@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-19",
+  "updated": "2026-09-20",
   "columns": [
     {
       "id": "blocked",
@@ -31,10 +31,10 @@
       "id": "allocent-li-ppc",
       "book": "Allocent",
       "title": "LinkedIn PPC week-1 (junior IR)",
-      "detail": "$25/day \u00d7 7d, visits\u2192allocent.ai, Company Page + Rafa. Pack ready: 361 co list, 3 creatives, Rafa setup.",
+      "detail": "$25/day \u00d7 7d, visits\u2192allocent.ai. Identity LOCKED: Ryan Ianni personal (not Company Page / Rafa). Pack ready: 361 co list, 3 creatives, IANNI_LI_ADS_SETUP.md. Next: approve creative + launch in Campaign Manager.",
       "status": "waiting_ryan",
       "date": "ASAP",
-      "owner": "CoS + Rafa"
+      "owner": "CoS + Ryan Ianni"
     },
     {
       "id": "allocent-plg",
